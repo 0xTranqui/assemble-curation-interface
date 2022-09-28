@@ -1,0 +1,1 @@
+export { CurationInterface } from './CurationInterface'

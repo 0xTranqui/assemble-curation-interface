@@ -1,0 +1,29 @@
+{
+  "name": "@public-assembly/assemble-curation-interface",
+  "version": "0.0.0",
+  "description": "opinionated ui for interacting with curation contract",
+  "main": "dist/public-assembly-assemble-curation-interface.cjs.js",
+  "author": "Max Bochman",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "/dist"
+  ],
+  "peerDependencies": {
+    "@public-assembly/assemble-curation-functions": "^0.0.6",
+    "@public-assembly/assemble-curation-validation": "^0.0.0",
+    "ethers": "^5.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "wagmi": "^0.6.7"
+  },
+  "devDependencies": {
+    "@public-assembly/assemble-curation-functions": "^0.0.6",
+    "@public-assembly/assemble-curation-validation": "^0.0.0",
+    "ethers": "^5.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "wagmi": "^0.6.7"
+  },
+  "dependencies": {}
+}

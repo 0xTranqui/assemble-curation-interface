@@ -2547,6 +2547,16 @@
     pirates "^4.0.1"
     source-map-support "^0.5.16"
 
+"@public-assembly/assemble-curation-functions@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@public-assembly/assemble-curation-functions/-/assemble-curation-functions-0.0.6.tgz#218de48c05397fd188afbbe44e180e5cb8c40688"
+  integrity sha512-QHQFwT2TUCnscNQ+ACXhihCWpDKqB+/UeVgMebWX8Sr4nYStDD1P/9b6S9+xKXKuii9kfO3+MvrG7UnqIbLypg==
+
+"@public-assembly/assemble-curation-validation@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@public-assembly/assemble-curation-validation/-/assemble-curation-validation-0.0.0.tgz#37b8c66a712c291e019690cc221120222ae2f85c"
+  integrity sha512-Epojj+5MwD9kKse5YGtblk8XjgneXwwdCaemSLciB82jLSlZUl2eE++IRkKQSAoajPcHOKdpzjRK6r3gcPYkkA==
+
 "@rainbow-me/rainbowkit@^0.6.0":
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@rainbow-me/rainbowkit/-/rainbowkit-0.6.1.tgz#dd336871d64773a8ae39d2b4fd4d121c55894b88"
@@ -8801,7 +8811,7 @@ vfile@^5.0.0:
     unist-util-stringify-position "^3.0.0"
     vfile-message "^3.0.0"
 
-wagmi@^0.6.6:
+wagmi@^0.6.6, wagmi@^0.6.7:
   version "0.6.7"
   resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.6.7.tgz#1069c4678105105ba8d91f07b7ef3a5be0cb5831"
   integrity sha512-cKGZxLctMnODXLycCCcH0Q6yc3ed580odxH6CB/V9b7UUotwHqImPfg0outzE7TJpQ6YDD83RJNPf2Ez7U4o7w==
