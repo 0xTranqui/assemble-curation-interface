@@ -1,91 +1,94 @@
 import { useValidation } from '@public-assembly/assemble-curation-validation'
-import { useOwnerCurationFunctions } from '@public-assembly/assemble-curation-functions'
+import { useCurationFunctions } from '@public-assembly/assemble-curation-functions'
+// import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { useState } from 'react'
 
 export type AllMyProps = {
   /**
    * userAddress:
    * curationContractAddress:
-   * updatedTitle:
-   * updatedTokenPass:
-   * listing:
+   * network:
+   * listings:
    */
 
   userAddress: string
   curationContractAddress: string
-  updatedTitle: string
-  updatedTokenPass: string
-  listing: string
+  network: number
+  listings?: string | string[] | any[] | [string, number, boolean][] // Listing[] memory listings
 }
 
 export function CurationInterface({
+  // shared inputs
   userAddress,
   curationContractAddress,
-  updatedTitle,
-  updatedTokenPass,
-  listing,
+
+  // useValidation inputs
+  network,
+
+  // useCurationFunctionInputs
+  listings,
 }: AllMyProps) {
+  const [isConnected, setIsConnected] = useState<boolean>(false)
+  // const [isOwner, setIsOwner] = useState<boolean>(false);
+  // const [isPassHolder, setIsPassHolder] = useState<boolean>(false);
+  // const [listingsInput, setListingsInput] = useState<string>("");
+
+  // useValidation
   const {
-    curationPassAddress,
-    userCurationPassBalance,
     isCurationPassHolder,
     isCurationOwner,
+    userActiveListings,
+    curationLimit,
+    frozenAt,
+    isPaused,
   } = useValidation({
     userAddress,
     curationContractAddress,
+    network,
   })
 
-  const {
-    // updateTitle
-    // updateTitleWrite,
-    updateTitleWriteData,
-    // txnUpdateTitleData,
-    // txnUpdateTitleStatus,
-
-    // // updateTokenPass
-    // updateTokenPassWrite,
-    // updateTokenPassWriteData,
-    // txnUpdateTokenPassData,
-    // txnUpdateTokenPassStatus,
-
-    // // ownerAddListing
-    // ownerAddListingWrite,
-    // ownerAddListingWriteData,
-    // txnOwnerAddListingData,
-    // txnOwnerAddListingStatus,
-
-    // // ownerRemoveListing
-    // ownerRemoveListingWrite,
-    // ownerRemoveListingWriteData,
-    // txnOwnerRemoveListingData,
-    // txnOwnerRemoveListingStatus,
-
-    // // pauseCuration
-    // pauseCurationWrite,
-    // pauseCurationWriteData,
-    // txnPauseCurationData,
-    // txnPauseCurationStatus,
-
-    // // resumeCuration
-    // resumeCurationWrite,
-    // resumeCurationWriteData,
-    // txnResumeCurationData,
-    // txnResumeCurationStatus,
-  } = useOwnerCurationFunctions({
+  // useCurationFunctions
+  const { addListingWrite } = useCurationFunctions({
     curationContractAddress,
-    updatedTitle,
-    updatedTokenPass,
-    listing,
+    listings,
   })
+
+  const shortenAddress = (address?: string) => {
+    try {
+      return address.slice(0, 4) + '...' + address.slice(address.length - 4)
+    } catch (err) {
+      return undefined
+    }
+  }
 
   return (
-    <div className="flex flex-col gap-1 rounded-xl border border-solid border-gray-200 p-4 text-black">
-      <div>{'Current User Address: ' + userAddress}</div>
-      <div>{'Current Contract Address ' + curationContractAddress}</div>
-      <div>{'Curation Pass Address: ' + curationPassAddress}</div>
-      <div>{'User Balance of Curation Pass: ' + userCurationPassBalance}</div>
-      <div>{'User owns curation pass : ' + isCurationPassHolder}</div>
-      <div>{'User is owner of curation contract : ' + isCurationOwner}</div>
-      <div>{'bruh: ' + updateTitleWriteData}</div>
+    <div className="flex h-[600px] w-[343px] flex-row flex-wrap justify-center bg-[#FF89DE] text-black">
+      <div className="flex h-fit w-full flex-row flex-wrap justify-start text-sm">
+        <div className="h-fit w-full">{shortenAddress(userAddress)}</div>
+        {isCurationOwner ? <div className="h-fit w-full">{'[OWNER]'}</div> : <div></div>}
+      </div>
+
+      <div className="flex h-fit w-full flex-row flex-wrap justify-center">
+        <button
+          onClick={() => setIsConnected(!isConnected)}
+          className="bg-black p-2 text-white">
+          {isConnected ? 'DISCONNECT' : 'CONNECT'}
+        </button>
+      </div>
+
+      <div className="flex h-fit w-full flex-row flex-wrap justify-center">
+        <button onClick={() => addListingWrite} className="bg-black p-2 text-white">
+          ADD LISTING
+        </button>
+      </div>
+
+      <div className="text-xs text-black">
+        <div>{'is pass holder: ' + isCurationPassHolder}</div>
+        <div>{'user listings: ' + userActiveListings}</div>
+        <div>{'cur limit: ' + curationLimit}</div>
+        <div>{'frozen At: ' + frozenAt}</div>
+        <div>{'is paused: ' + isPaused.toString()}</div>
+      </div>
     </div>
   )
 }

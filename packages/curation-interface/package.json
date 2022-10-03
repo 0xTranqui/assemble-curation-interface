@@ -10,16 +10,18 @@
     "/dist"
   ],
   "peerDependencies": {
-    "@public-assembly/assemble-curation-functions": "^0.0.6",
-    "@public-assembly/assemble-curation-validation": "^0.0.0",
+    "@public-assembly/assemble-curation-functions": "^0.0.8",
+    "@public-assembly/assemble-curation-validation": "^0.0.3",
+    "@rainbow-me/rainbowkit": "^0.7.0",
     "ethers": "^5.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "wagmi": "^0.6.7"
   },
   "devDependencies": {
-    "@public-assembly/assemble-curation-functions": "^0.0.6",
-    "@public-assembly/assemble-curation-validation": "^0.0.0",
+    "@public-assembly/assemble-curation-functions": "^0.0.8",
+    "@public-assembly/assemble-curation-validation": "^0.0.3",
+    "@rainbow-me/rainbowkit": "^0.7.0",
     "ethers": "^5.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
