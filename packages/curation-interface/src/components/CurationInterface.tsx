@@ -3,6 +3,8 @@ import { useValidation } from '@public-assembly/assemble-curation-validation'
 // import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useState, useEffect } from 'react'
 import { CurationHeader } from './CurationHeader'
+import { CurationFooter } from './CurationFooter'
+import { CurationBody } from './CurationBody'
 
 export type AllMyProps = {
   /**
@@ -33,17 +35,20 @@ export function CurationInterface({
 }: AllMyProps) {
   // useValidation
   const {
-    isCurationPassHolder,
+    // isCurationPassHolder,
     isCurationOwner,
-    userActiveListings,
-    curationLimit,
-    frozenAt,
-    isPaused,
+    // userActiveListings,
+    // curationLimit,
+    // frozenAt,
+    // isPaused,
   } = useValidation({
     userAddress,
     curationContractAddress,
     network,
   })
+
+  // component wide state
+  const [addTracksView, setAddTracksView] = useState<boolean>(false)
 
   const [currentTimeStamp, setCurrentTimeStamp] = useState<number>(0)
   // const [listingsToAdd, setListingsToAdd] = useState<ListingProps>()
@@ -72,8 +77,18 @@ export function CurationInterface({
     return () => clearInterval(interval)
   }, [])
 
+  const resetAddViewState = () => {
+    setAddTracksView(false)
+  }
+
+  useEffect(() => {
+    if (!connectionStatus) {
+      resetAddViewState()
+    }
+  }, [connectionStatus])
+
   return (
-    <div className="flex h-[540px] w-[320px] flex-row flex-wrap justify-center bg-[#FF89DE] text-black sm:h-[420px] sm:w-[588px]">
+    <div className="flex h-[540px] w-[320px] flex-row flex-wrap content-between justify-center bg-[#FF89DE] text-black sm:h-[420px] sm:w-[588px]">
       {/* <div className="flex h-fit w-full flex-row flex-wrap justify-start text-sm">
         <div className="h-fit w-full">{ connectionStatus ? shortenAddress(userAddress) : 'no user connected'}</div>
         {isCurationOwner && connectionStatus ? <div className="h-fit w-full">{'[OWNER]'}</div> : <div></div>}
@@ -82,29 +97,30 @@ export function CurationInterface({
         connectionStatus={connectionStatus}
         userAddress={userAddress}
         ownerStatus={isCurationOwner}
+        addViewFn={setAddTracksView}
       />
 
-      {connectionStatus ? (
-        <div className="flex h-fit w-full flex-row flex-wrap justify-center">
-          {/* <button onClick={() => addListingWrite}className="bg-black p-2 text-white">
-          ADD LISTING
-        </button> */}
-          <button className="bg-black p-2 text-white">ADD LISTING</button>
-        </div>
-      ) : (
-        <div className="flex h-fit w-full flex-row flex-wrap justify-center">
-          <button className="bg-black p-2 text-white">PLACEHOLDER CONNECT</button>
-        </div>
-      )}
+      <CurationBody
+        connectionStatus={connectionStatus}
+        addView={addTracksView}
+        addViewFn={setAddTracksView}
+      />
 
-      <div className="text-xs text-black">
+      <CurationFooter
+        addView={addTracksView}
+        addViewFn={setAddTracksView}
+        connectionStatus={connectionStatus}
+      />
+
+      {/* <div className="text-xs text-black">
         <div>{'is pass holder: ' + isCurationPassHolder}</div>
         <div>{'user listings: ' + userActiveListings}</div>
         <div>{'cur limit: ' + curationLimit}</div>
         <div>{'frozen At: ' + frozenAt}</div>
         <div>{'is paused: ' + isPaused.toString()}</div>
         <div>{'current Unix: ' + currentTimeStamp}</div>
-      </div>
+      </div> */}
+      <div>{'current Unix: ' + currentTimeStamp}</div>
     </div>
   )
 }
