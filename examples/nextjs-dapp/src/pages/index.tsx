@@ -22,16 +22,13 @@ function Page() {
         curationContractAddress={hardcodedCurationContractAddress}
         network={hardcodedNetwork}
       />
-      <div className="mt-10 flex h-fit w-full flex-row flex-wrap justify-center">
+      <div className="mt-20 flex h-fit w-full flex-row flex-wrap justify-center">
         <button
           onClick={() => setIsConnected(!isConnected)}
           className="bg-black p-2 text-white border-2">
           {isConnected ? 'DISCONNECT' : 'CONNECT'}
         </button>
       </div>
-      {/* <div className="mt-10 flex h-fit w-full flex-row flex-wrap justify-center">
-        {"current Unix: " + currentTimeStamp}
-      </div>       */}
     </div>
   )
 }

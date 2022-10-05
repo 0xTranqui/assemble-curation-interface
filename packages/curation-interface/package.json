@@ -1,6 +1,6 @@
 {
   "name": "@public-assembly/assemble-curation-interface",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "opinionated ui for interacting with curation contract",
   "main": "dist/public-assembly-assemble-curation-interface.cjs.js",
   "author": "Max Bochman",
