@@ -1,3 +1,5 @@
+/* @ts-ignore */
+import * as React from 'react'
 import { useValidation } from '@public-assembly/assemble-curation-validation'
 // import { useCurationFunctions } from '@public-assembly/assemble-curation-functions'
 // import { ConnectButton } from "@rainbow-me/rainbowkit"
@@ -16,6 +18,7 @@ export type AllMyProps = {
   userAddress: string
   curationContractAddress: string
   network: number
+  closeButton?: JSX.Element
 }
 
 export type ListingProps = {
@@ -30,6 +33,7 @@ export function CurationInterface({
 
   // useValidation inputs
   network,
+  closeButton,
 }: AllMyProps) {
   // useValidation
   const {
@@ -82,6 +86,7 @@ export function CurationInterface({
         connectionStatus={connectionStatus}
         userAddress={userAddress}
         ownerStatus={isCurationOwner}
+        closeButton={closeButton}
       />
 
       {connectionStatus ? (
