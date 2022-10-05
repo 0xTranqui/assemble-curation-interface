@@ -1,3 +1,5 @@
+/* @ts-ignore */
+import * as React from 'react'
 import { useValidation } from '@public-assembly/assemble-curation-validation'
 // import { useCurationFunctions } from '@public-assembly/assemble-curation-functions'
 // import { ConnectButton } from "@rainbow-me/rainbowkit"
